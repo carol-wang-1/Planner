@@ -1,0 +1,487 @@
+/* ==========================================
+   PAGES.CSS - PAGE LAYOUTS & STRUCTURE
+   ========================================== */
+
+/* This file contains HOW elements are ARRANGED on each page:
+   1. Form layouts (add item boxes, input arrangements) - ln 18
+   2. Grid layouts for different sections (TASK)- ln 180
+   3. (IDEAS) - ln 190
+   4. (NOTES) - ln 212
+   5. (CALENDAR) - ln 238
+   6. (WEEK VIEW) - ln
+   7. (DAY VIEW) - ln
+   8. (ROUTINE) - ln
+   - Page containers and spacing 
+   - Responsive layout changes - ln 
+   
+   For individual component styling (cards, buttons, inputs), see components.css */
+
+/* ==========================================
+   1. FORM LAYOUTS - ADD ITEM BOXES
+   ========================================== */
+
+/* Base Add Item Box - Mobile First */
+.add-item-box {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .add-item-box {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2rem;
+        gap: 1rem;
+    }
+}
+
+/* Ideas Form Layout */
+.add-item-box.ideas-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Form Structure Elements */
+.bt-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (min-width: 769px) {
+    .bt-container {
+        width: auto;
+    }
+}
+
+.add-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    display: block;
+    min-height: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Buttons Container */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+}
+
+@media (min-width: 769px) {
+    .buttons {
+        flex-direction: row;
+        width: auto;
+    }
+}
+
+.buttons.ideas-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 769px) {
+    .buttons.ideas-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Generic Form Layouts */
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 769px) {
+    .add-form {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.add-form-ideas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 769px) {
+    .add-form-ideas {
+        grid-template-columns: 1fr 1fr auto auto auto;
+    }
+}
+
+.add-form-events {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 769px) {
+    .add-form-events {
+        grid-template-columns: 2fr 1.5fr 1.5fr 2fr auto;
+    }
+}
+
+/* Habits Form - Specific Grid Layout */
+#habits .add-item-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+    #habits .add-item-box {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 769px) {
+    #habits .add-item-box {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Habit form children positioning - Mobile */
+
+@media (max-width: 768px) {
+    #habits .add-item-box .bt-container:nth-of-type(1) { grid-column: 1; }
+    #habits .add-item-box .bt-container:nth-of-type(2) { grid-column: 1; }
+    #habits .add-item-box .bt-container:nth-of-type(3) { grid-column: 1; }
+    #habits .add-item-box .bt-container:nth-of-type(4) { grid-column: 1; }
+    
+    #habits .add-item-box .day-selector-inline { grid-column: 1; }
+    
+    #habits .add-item-box .buttons {
+        grid-column: 1;
+    }
+}
+
+/* Habit form children positioning - Desktop */
+@media (min-width: 769px) {
+    #habits .add-item-box .bt-container:nth-of-type(1) { grid-column: 1; }
+    #habits .add-item-box .bt-container:nth-of-type(2) { grid-column: 1; }
+    #habits .add-item-box .bt-container:nth-of-type(3) { grid-column: 2; }
+    #habits .add-item-box .bt-container:nth-of-type(4) { grid-column: 2; }
+
+    #habits .add-item-box .day-selector-inline { grid-column: 1 / -1; }
+
+    #habits .add-item-box .buttons {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+}
+}
+
+/* ==========================================
+   2. TASKS SECTION LAYOUT
+   ========================================== */
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ==========================================
+   3. IDEAS SECTION LAYOUT
+   ========================================== */
+
+.ideas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+    .ideas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+.ideas-grid .empty-state {
+    grid-column: 1 / -1;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================
+   4. NOTES SECTION LAYOUT
+   ========================================== */
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notes-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 769px) {
+    .notes-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* ==========================================
+   5. CALENDAR SECTION LAYOUT
+   ========================================== */
+
+.calendar-container {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 769px) {
+    .calendar-container {
+        padding: 2rem;
+    }
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.calendar-month {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+@media (min-width: 769px) {
+    .calendar-month {
+        font-size: 1.5rem;
+    }
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+@media (min-width: 769px) {
+    .calendar-grid {
+        gap: 0.5rem;
+    }
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+}
+
+@media (min-width: 769px) {
+    .calendar-day-header {
+        font-size: 0.875rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Calendar View Switcher */
+.calendar-view-switcher {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 769px) {
+    .calendar-view-switcher {
+        gap: 1rem;
+    }
+}
+
+/* ==========================================
+   6. WEEK VIEW LAYOUT
+   ========================================== */
+
+.week-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 769px) {
+    .week-view {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .week-view {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.week-day {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    min-height: 150px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid var(--border-color);
+}
+
+.week-day:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.week-day.today {
+    border-color: var(--sidebar-bg);
+    background: rgba(40, 54, 24, 0.03);
+}
+
+.week-day-header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.week-day-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+@media (min-width: 769px) {
+    .week-day-name {
+        font-size: 0.9rem;
+    }
+}
+
+.week-day-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+@media (min-width: 769px) {
+    .week-day-date {
+        font-size: 0.85rem;
+    }
+}
+
+.week-day-content {
+    padding: 0.75rem 0 0 0;
+}
+
+.no-events {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* ==========================================
+   7. DAY VIEW LAYOUT
+   ========================================== */
+
+.day-view {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    min-height: 400px;
+}
+
+@media (min-width: 769px) {
+    .day-view {
+        padding: 2rem;
+    }
+}
+
+.day-section {
+    margin-bottom: 2rem;
+}
+
+.day-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sidebar-bg);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+@media (min-width: 769px) {
+    .day-section h4 {
+        font-size: 1.1rem;
+    }
+}
+
+.day-events-body {
+    padding: 1.5rem 2rem;
+}
+
+/* ==========================================
+   8. ROUTINE SECTION LAYOUT
+   ========================================== */
+
+.routine-week-view {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.routine-day-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.routine-day-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sidebar-bg);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.routine-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
