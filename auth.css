@@ -1,0 +1,223 @@
+/* ==========================================
+   AUTH.CSS - AUTHENTICATION STYLES
+   ========================================== */
+
+/* Auth Page Container */
+#authPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #283618 0%, #1a3a1a 100%);
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+}
+
+#authPage.hidden {
+    display: none;
+}
+
+/* Auth Card */
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Section */
+.auth-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-logo h1 {
+    font-size: 2rem;
+    color: #283618;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.auth-logo p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0 0;
+}
+
+/* Mode Selector Buttons */
+.auth-mode-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.auth-mode-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #283618;
+    background: white;
+    color: #283618;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.auth-mode-btn:hover {
+    background: #f5f5f5;
+}
+
+.auth-mode-btn.active {
+    background: #283618;
+    color: white;
+}
+
+/* Form Styles */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form-group {
+    margin-bottom: 1rem;
+}
+
+.auth-form-group:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #283618;
+    margin-bottom: 0.5rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #283618;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 0.875rem;
+    background: #283618;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.auth-form button:hover {
+    background: #34495e;
+    transform: translateY(-1px);
+}
+
+.auth-form button:active {
+    transform: translateY(0);
+}
+
+/* Form Footer */
+.auth-footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+/* User Display / Logout */
+.auth-user-info {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    z-index: 100;
+}
+
+.auth-user-email {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-logout-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.auth-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Main App - Hidden by default */
+#mainApp {
+    display: none;
+    flex: 1;
+}
+
+#mainApp.visible {
+    display: flex;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #authPage {
+        padding: 1rem;
+    }
+
+    .auth-card {
+        padding: 2rem;
+        max-width: 100%;
+    }
+
+    .auth-logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-user-info {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .auth-user-email {
+        font-size: 0.8rem;
+    }
+
+    .auth-logout-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
