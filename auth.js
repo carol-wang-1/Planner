@@ -44,39 +44,63 @@ async function signUp() {
     
     // Disable button
     const signupBtn = document.querySelector('#signupForm button[type="submit"]');
+    const originalText = signupBtn.textContent;
     signupBtn.disabled = true;
     signupBtn.textContent = 'Creating account...';
     
     try {
         const { data, error } = await window.supabaseClient.auth.signUp({
             email: email,
-            password: password
+            password: password,
+            options: {
+                emailRedirectTo: window.location.origin
+            }
         });
         
         if (error) {
+            console.error('Signup error:', error);
             alert(error.message);
             signupBtn.disabled = false;
-            signupBtn.textContent = 'Create Account';
+            signupBtn.textContent = originalText;
             return;
         }
         
-        // Success - initialize user data
-        if (data.user) {
-            await initializeUserData(data.user.id);
+        // Check if email confirmation is required
+        if (data.user && !data.session) {
+            alert('Please check your email to confirm your account before logging in.');
+            signupBtn.disabled = false;
+            signupBtn.textContent = originalText;
             
             // Clear form
             document.getElementById('signupEmail').value = '';
             document.getElementById('signupPassword').value = '';
             document.getElementById('signupConfirmPassword').value = '';
             
-            alert('Account created successfully! Logging you in...');
+            // Switch to login form
+            switchAuthMode('login');
+            return;
+        }
+        
+        // Success - user logged in automatically (no email confirmation required)
+        if (data.user && data.session) {
+            // Initialize user data
+            await initializeUserData(data.user.id);
+            
+            console.log('Account created and logged in!');
+            
+            // Clear form
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupConfirmPassword').value = '';
+            
+            // The onAuthStateChange in supabase.js will handle showing the app
         }
         
     } catch (error) {
         console.error('Signup error:', error);
         alert('An error occurred. Please try again.');
         signupBtn.disabled = false;
-        signupBtn.textContent = 'Create Account';
+        signupBtn.textContent = originalText;
     }
 }
 
