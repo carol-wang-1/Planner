@@ -21,7 +21,13 @@ supabase.auth.onAuthStateChange((event, session) => {
         document.getElementById('mainApp').classList.add('visible');
         document.getElementById('mainAppContent').style.display = 'flex';
         
-        // Show user email in logout button area
+        // Show user email in sidebar
+        const sidebarEmail = document.getElementById('sidebarUserEmail');
+        if (sidebarEmail) {
+            sidebarEmail.textContent = currentUser.email;
+        }
+        
+        // Show user email in top right (if it exists)
         const userEmailDisplay = document.getElementById('userEmailDisplay');
         if (userEmailDisplay) {
             userEmailDisplay.textContent = currentUser.email;
