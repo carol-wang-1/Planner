@@ -153,13 +153,11 @@
 
 /* User Display / Logout */
 .auth-user-info {
-    position: absolute;
-    top: 1rem;
     right: 1rem;
     display: flex;
     gap: 1rem;
     align-items: center;
-    z-index: 100;
+    margin-top: auto;
 }
 
 .auth-user-email {
@@ -220,4 +218,5 @@
         padding: 0.4rem 0.8rem;
         font-size: 0.85rem;
     }
+
 }
