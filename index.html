@@ -75,11 +75,6 @@
 
 <!-- Main App (hidden until login) -->
 <div id="mainApp">
-    <!-- Add logout button to your sidebar -->
-    <div class="auth-user-info">
-        <span id="userEmailDisplay" class="auth-user-email"></span>
-        <button class="auth-logout-btn" onclick="logOut()">Log Out</button>
-    </div>
 
     <div class="app-container" id="mainAppContent" style="display: none;">
         <!-- Sidebar -->
@@ -152,6 +147,11 @@
                     <span>Routine</span>
                 </button>
             </nav>
+            <!-- Add logout button to your sidebar -->
+            <div class="auth-user-info">
+                <span id="userEmailDisplay" class="auth-user-email"></span>
+                <button class="auth-logout-btn" onclick="logOut()">Log Out</button>
+            </div>
         </aside>
 
         <!-- Main Content -->
