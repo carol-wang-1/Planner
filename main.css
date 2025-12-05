@@ -178,11 +178,12 @@
     }
     
     /* Main Content - Desktop */
-    .main-content {
-        margin-left: 290px;
-        padding: 3rem 4rem;
-        max-width: calc(100vw - 290px);
-    }
+.main-content {
+    margin-left: 290px;
+    padding: 3rem 4rem;
+    width: calc(100vw - 290px);
+    box-sizing: border-box;
+}
     
     .section-title {
         font-size: 2.5rem;
@@ -198,4 +199,5 @@
     .main-content {
         padding: 2.5rem 2rem;
     }
+
 }
