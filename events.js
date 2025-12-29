@@ -94,7 +94,11 @@ function renderEvents() {
         return;
     }
     
-    const sorted = [...data.events].sort((a, b) => new Date(a.date) - new Date(b.date));
+    const sorted = [...data.events].sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateA - dateB; 
+    });
     
     const html = sorted.map(event => `
         <div class="item">
@@ -110,4 +114,5 @@ function renderEvents() {
     `).join('');
     
     container.innerHTML = html;
+
 }
