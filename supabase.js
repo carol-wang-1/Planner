@@ -4,14 +4,18 @@ const SUPABASE_URL = 'https://proqzlrhzihqgkmgdaqi.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByb3F6bHJoemlocWdrbWdkYXFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyNDIxMjksImV4cCI6MjA3OTgxODEyOX0.KlDYsckGn5R168_8VmAEzlEvITuOtgQgKrSHdTZTgv8';
 
 // Create Supabase client
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Current user
 let currentUser = null;
 
+// Export for use in other files - MOVED TO TOP
+window.supabaseClient = supabaseClient;
+window.getCurrentUser = () => currentUser;
+
 // Check if user is already logged in on page load
 (async function checkInitialAuth() {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     
     if (session) {
         // User is logged in - show app immediately
@@ -24,7 +28,7 @@ let currentUser = null;
 })();
 
 // Listen for auth state changes
-supabase.auth.onAuthStateChange((event, session) => {
+supabaseClient.auth.onAuthStateChange((event, session) => {
     if (session) {
         currentUser = session.user;
         showMainApp();
@@ -76,7 +80,3 @@ function showAuthPage() {
         mainAppContent.style.display = 'none';
     }
 }
-
-// Export for use in other files
-window.supabaseClient = supabase;
-window.getCurrentUser = () => currentUser;
